@@ -1,10 +1,12 @@
 // CONSTANTS
 export const BASE_URL_API = 'https://bytegrad.com/course-assets/js/2/api';
 export const DEFAULT_DISPLAY_TIME = 3500;
+export const RESULTS_PER_PAGE = 7;
 
 // STATE
 export const state = {
-    searchJobItems: []
+    searchJobItems: [],
+    currentPage: 1,
 }
 
 //DOM SEELECTORS
@@ -29,16 +31,18 @@ export const sortingBtnRecentEl = document.querySelector(".sorting__button--rece
 export const spinnerSearchEl = document.querySelector(".spinner--search");
 export const spinnerJobDetailsEl = document.querySelector(".spinner--job-details");
 
-// UTILITIES FUNCTION
 
+// UTILITIES FUNCTIONS
+
+// getData --> handles the async code for the fetching of the API
 export const getData = async (completeURL) => {
     const res = await fetch(completeURL);
-        const data = await res.json();
+    const data = await res.json();
 
-        // si hay algun problema con el fetch a al url
-        if(!res.ok){
-            throw new Error(data.description);
-        }
+    // si hay algun problema con el fetch a al url
+    if(!res.ok){
+        throw new Error(data.description);
+    }
         
     return data
 };

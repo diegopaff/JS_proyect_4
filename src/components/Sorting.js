@@ -6,6 +6,7 @@ import {
 } from '../common.js'
 
 import renderJobList from './JobList.js';
+import renderPaginationButtons from './Pagination.js';
 
 const clickHandler = (ev) => {
 
@@ -14,7 +15,11 @@ const clickHandler = (ev) => {
 
     //stop function if no clicked button
     if (!clickedButtonEL) return;
-
+    
+    // reset pagination to 1 when sorting change
+    state.currentPage = 1;
+    renderPaginationButtons();
+    
     // check if is recent or relevant
     const recent = clickedButtonEL.className.includes('--recent') ? true : false;
 
@@ -36,7 +41,7 @@ const clickHandler = (ev) => {
         });
     }
 
-
+    
     renderJobList();
 }
 sortingEl.addEventListener('click', clickHandler);
