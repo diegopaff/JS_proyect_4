@@ -4,7 +4,9 @@ import {
     jobListSearchEl,
     numberEl,
     BASE_URL_API,
-    getData
+    getData,
+    state
+
 } from '../common.js'
 
 import renderError from './Error.js';
@@ -42,6 +44,9 @@ const submitHandler = async (ev) => {
     
         const { jobItems } = data; // array of jobs
 
+        //update state
+        state.searchJobItems = jobItems;
+
         //remove loader spinner
         renderSpinner('search');
     
@@ -49,7 +54,7 @@ const submitHandler = async (ev) => {
         numberEl.textContent = jobItems.length;
     
         //render elements in list
-        renderJobList(jobItems);
+        renderJobList();
 
     } catch (error){
         renderError(error.message);
