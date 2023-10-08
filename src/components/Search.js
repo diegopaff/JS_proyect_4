@@ -61,7 +61,7 @@ const submitHandler = async (ev) => {
         //remove loader spinner
         renderSpinner('search');
     
-        //cantidad de resultados
+        //quantity of elements
         numberEl.textContent = jobItems.length;
     
         //render elements in list

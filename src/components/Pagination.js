@@ -31,11 +31,11 @@ const renderPaginationButtons = () => {
 
 const clickHandler = (ev) => {
     //get the clicked element
-    const clickedButtonEL = event.target.closest('.pagination__button');
+    const clickedButtonEL = ev.target.closest('.pagination__button');
     //if no click then exits the function
     if(!clickedButtonEL) return;
 
-    // chequear si la intención es ir hacia la next page
+    // check if the intention is to go to next page
     const nextPage = clickedButtonEL.className.includes('--next') ? true : false;
 
     // update state

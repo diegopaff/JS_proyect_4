@@ -2,6 +2,7 @@ import {
     jobDetailsContentEl,
     BASE_URL_API,
     getData,
+    state
 }from '../common.js'
 
 import renderSpinner from './Spinner.js';
@@ -9,7 +10,7 @@ import renderJobDetails from './JobDetails.js';
 import renderError from './Error.js';
 
 const loadHashChangeHanlder = async () => {
-   //get the id from the url
+   //get the id from the url 
    const id = window.location.hash.substring(1);
    
    if(id){
@@ -26,6 +27,8 @@ const loadHashChangeHanlder = async () => {
         const data = await getData(`${BASE_URL_API}/jobs/${id}`);
         const { jobItem } = data;
 
+        // update state: activeJobItem
+        state.activeJobItem = jobItem;
         // render the details using JobDetails component
         renderJobDetails(jobItem);
         
